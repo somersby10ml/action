@@ -27,3 +27,15 @@ jobs:
           python-version: '3.10' 
       - run: python my_script.py
 
+      - name: commit files
+        run: |
+          git config --local user.email "somersby10ml@github.com"
+          git config --local user.name "somersby10ml"
+          git add test.txt
+          git commit -m "update data" -a
+          
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main  
